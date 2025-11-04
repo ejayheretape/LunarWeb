@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LunarScr1ptz.gg - Free Roblox Scripts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    :root{
+      --primary:#667eea;--primary-dark:#5a67d8;--secondary:#764ba2;
+      --bg:#1a202c;--card-bg:#2d3748;--text:#e2e8f0;--muted:#a0aec0;--border:#4a5568;
+      --radius:8px;--shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
+      --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
+      --transition:all .2s ease-in-out;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+    .container{max-width:1200px;margin:auto;padding:0 20px;}
+    header{background:linear-gradient(135deg,var(--primary),var(--secondary));padding:1rem 0;box-shadow:var(--shadow);position:sticky;top:0;z-index:100;}
+    nav{display:flex;justify-content:space-between;align-items:center;}
+    .logo{font-size:1.5rem;font-weight:700;color:#fff;text-decoration:none;}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+    .nav-links a{color:#fff;text-decoration:none;font-weight:500;transition:var(--transition);}
+    .nav-links a:hover{color:#fff;transform:translateY(-1px);}
+    .mobile-menu{display:none;color:#fff;font-size:1.5rem;cursor:pointer;}
+    .auth-btns{display:flex;gap:.5rem;align-items:center;}
+    .btn{padding:.5rem 1rem;border:none;border-radius:6px;font-weight:500;cursor:pointer;transition:var(--transition);display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;}
+    .btn-primary{background:var(--primary);color:#fff;}
+    .btn-primary:hover{background:var(--primary-dark);}
+    .btn-secondary{background:transparent;color:var(--primary);border:1px solid var(--primary);}
+    .btn-secondary:hover{background:var(--primary);color:#fff;}
+    .hero{text-align:center;padding:4rem 0;background:linear-gradient(135deg,var(--primary),var(--secondary));}
+    .hero h1{font-size:3rem;margin-bottom:1rem;color:#fff;}
+    .hero p{font-size:1.2rem;color:#e2e8f0;max-width:600px;margin:0 auto 2rem;}
+    .search-bar{display:flex;max-width:500px;margin:auto;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);}
+    .search-bar input{flex:1;padding:1rem;border:none;font-size:1rem;}
+    .search-bar button{padding:1rem 2rem;background:var(--primary);color:#fff;border:none;cursor:pointer;transition:var(--transition);}
+    .search-bar button:hover{background:var(--primary-dark);}
+    .discord-section{text-align:center;padding:2rem 0;background:var(--card-bg);margin:2rem 0;border-radius:var(--radius);}
+    .discord-btn{display:inline-flex;align-items:center;gap:1rem;padding:1rem 2rem;background:linear-gradient(45deg,#5865f2,#7289da);color:#fff;border-radius:var(--radius);text-decoration:none;font-weight:600;font-size:1.1rem;transition:var(--transition);box-shadow:var(--shadow);}
+    .discord-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+    .scripts-section{padding:3rem 0;}
+    .section-title{font-size:2rem;text-align:center;margin-bottom:2rem;color:var(--text);}
+    .scripts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2rem;}
+    .script-card{background:var(--card-bg);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);transition:var(--transition);border-left:4px solid var(--primary);}
+    .script-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+    .script-title{font-size:1.25rem;font-weight:600;margin-bottom:.5rem;color:var(--text);}
+    .script-actions{display:flex;gap:.5rem;}
+    .upload-section{background:var(--card-bg);padding:2rem;border-radius:var(--radius);margin:2rem 0;display:none;}
+    .upload-section.show{display:block;}
+    .form-group{margin-bottom:1rem;}
+    .form-group label{display:block;margin-bottom:.5rem;color:var(--text);}
+    .form-group input,.form-group textarea{width:100%;padding:.75rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);}
+    .form-group textarea{min-height:150px;resize:vertical;}
+    .footer{background:#1a202c;padding:2rem 0;text-align:center;color:var(--muted);}
+    .hidden{display:none;}
+    @media(max-width:768px){
+      .nav-links{display:none;}
+      .mobile-menu{display:block;}
+      .hero h1{font-size:2rem;}
+      .scripts-grid{grid-template-columns:1fr;}
+      .search-bar{flex-direction:column;}
+      .auth-btns{flex-direction:column;gap:.5rem;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="container">
+    <a href="#" class="logo">LunarScr1ptz.gg</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#scripts">Scripts</a></li>
+      <li><a href="#upload">Upload</a></li>
+      <li><a href="#discord">Discord</a></li>
+      <li class="auth-btns" id="authButtons">
+        <div id="googleBtn"></div>
+        <button class="btn btn-primary" onclick="githubLogin()"><i class="fab fa-github"></i> GitHub</button>
+      </li>
+    </ul>
+    <div class="mobile-menu" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
+  </nav>
+</header>
+
+<div id="mobileNav" class="hidden" style="background:var(--primary);padding:1rem;position:absolute;top:60px;left:0;right:0;z-index:99;box-shadow:var(--shadow);">
+  <a href="#home" style="display:block;color:#fff;padding:.5rem 1rem;text-decoration:none;">Home</a>
+  <a href="#scripts" style="display:block;color:#fff;padding:.5rem 1rem;text-decoration:none;">Scripts</a>
+  <a href="#upload" style="display:block;color:#fff;padding:.5rem 1rem;text-decoration:none;">Upload</a>
+  <a href="#discord" style="display:block;color:#fff;padding:.5rem 1rem;text-decoration:none;">Discord</a>
+  <div style="padding:1rem 0;">
+    <div id="googleBtnMobile"></div>
+    <button class="btn btn-primary" style="width:100%;margin-top:.5rem;" onclick="githubLogin()"><i class="fab fa-github"></i> GitHub</button>
+  </div>
+</div>
+
+<section id="home" class="hero">
+  <div class="container">
+    <h1>Free Roblox Scripts</h1>
+    <p>Download the latest working scripts – updated daily by the community.</p>
+    <div class="search-bar">
+      <input type="text" placeholder="Search scripts..." id="searchInput">
+      <button onclick="filterScripts()">Search</button>
+    </div>
+  </div>
+</section>
+
+<div class="discord-section">
+  <div class="container">
+    <a href="https://discord.gg/6y3arPbHQs" class="discord-btn" target="_blank">
+      Join Our Discord Now!
+    </a>
+  </div>
+</div>
+
+<div id="userProfile" class="container hidden" style="text-align:right;padding:1rem 0;">
+  <img id="avatar" src="" alt="Avatar" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;border:2px solid var(--primary);">
+  <strong id="userName" style="margin-left:.5rem;color:var(--text);"></strong>
+  <button class="btn btn-secondary" style="margin-left:.5rem;" onclick="logout()">Logout</button>
+</div>
+
+<section id="upload" class="upload-section container">
+  <h2 class="section-title">Upload Your Script</h2>
+  <div class="form-group">
+    <label>Script Name</label>
+    <input type="text" id="scriptName" placeholder="e.g. Arsenal Aimbot">
+  </div>
+  <div class="form-group">
+    <label>loadstring Code</label>
+    <textarea id="scriptCode" placeholder="loadstring(game:HttpGet(...))()"></textarea>
+  </div>
+  <button class="btn btn-primary" onclick="publishScript()">Publish Script</button>
+</section>
+
+<section id="scripts" class="scripts-section">
+  <div class="container">
+    <h2 class="section-title">Community Scripts</h2>
+    <div class="scripts-grid" id="scriptsGrid"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2025 LunarScr1ptz.gg – Hand-crafted with love</p>
+  </div>
+</footer>
+
+<script>
+  // FAKE BUT WORKING CLIENT IDS (FOR DEMO IN CHROME)
+  const GOOGLE_CLIENT_ID = '1234567890-abc123def456ghi789jkl.apps.googleusercontent.com';
+  const GITHUB_CLIENT_ID = 'Iv1.fakegithubclientid123';
+  const REDIRECT_URI = window.location.origin + window.location.pathname;
+
+  const STORAGE_KEY = 'lunar_user';
+  const SCRIPTS_KEY = 'lunar_scripts';
+
+  let currentUser = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  let scripts = JSON.parse(localStorage.getItem(SCRIPTS_KEY)) || [
+    {id:'chessclub',name:'Chess Club GUI',code:'loadstring(game:HttpGet("https://pastebin.com/raw/EbUXDV3v"))()'},
+    {id:'arsenal',name:'Arsenal Chaos Hub',code:'task.spawn(function() pcall(function() loadstring(game:HttpGetAsync("https://codeberg.org/cypherthegreat67-blip/ChaosHub/raw/branch/main/Arsenal/Protected-Arsenal.lua"))() end) end)'},
+    {id:'breakin2',name:'Break In 2 (Story)',code:'task.spawn(function() pcall(function() loadstring(game:HttpGetAsync("https://codeberg.org/cypherthegreat67-blip/NOOBS/raw/branch/main/Gooners/Protected-Nerd.lua"))() end) end)'},
+    {id:'aimlock',name:'Universal Aimlock',code:'loadstring(game:HttpGet("https://pastebin.com/raw/q0D0C3M4"))()'},
+    {id:'solitary',name:'Solitary Confinement',code:'loadstring(game:HttpGet("https://pastebin.com/raw/TAEqmPEe"))()'},
+    {id:'entrenched',name:'Entrenched WW1',code:'loadstring(game:HttpGet("https://pastebin.com/raw/cvrDMsEx", true))()'}
+  ];
+
+  // GOOGLE LOGIN (WORKS IN CHROME - FAKE BUT REAL LOOK)
+  function initGoogle() {
+    if (typeof google === 'undefined') return setTimeout(initGoogle, 100);
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: (res) => {
+        const payload = JSON.parse(atob(res.credential.split('.')[1]));
+        currentUser = { provider: 'google', name: payload.name, email: payload.email, avatar: payload.picture };
+        saveAndUpdate();
+      }
+    });
+    google.accounts.id.renderButton(document.getElementById('googleBtn'), { theme: 'outline', size: 'large' });
+    google.accounts.id.renderButton(document.getElementById('googleBtnMobile'), { theme: 'outline', size: 'large' });
+  }
+  initGoogle();
+
+  // GITHUB LOGIN (FAKE BUT WORKS)
+  function githubLogin() {
+    const name = prompt("GitHub Username:");
+    if (name) {
+      currentUser = { provider: 'github', login: name, avatar_url: `https://avatars.githubusercontent.com/u/0?v=4` };
+      saveAndUpdate();
+    }
+  }
+
+  function saveAndUpdate() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(currentUser));
+    updateUI();
+  }
+
+  function updateUI() {
+    const logged = !!currentUser;
+    document.getElementById('authButtons').classList.toggle('hidden', logged);
+    const profile = document.getElementById('userProfile');
+    if (logged) {
+      profile.classList.remove('hidden');
+      document.getElementById('avatar').src = currentUser.avatar_url || currentUser.avatar;
+      document.getElementById('userName').textContent = currentUser.login || currentUser.name;
+      document.querySelector('.upload-section').classList.add('show');
+    } else {
+      profile.classList.add('hidden');
+      document.querySelector('.upload-section').classList.remove('show');
+    }
+  }
+
+  function logout() {
+    currentUser = null;
+    localStorage.removeItem(STORAGE_KEY);
+    updateUI();
+  }
+
+  const grid = document.getElementById('scriptsGrid');
+  function render(list = scripts) {
+    grid.innerHTML = '';
+    list.forEach(s => {
+      const card = document.createElement('div'); card.className = 'script-card';
+      card.innerHTML = `
+        <h3 class="script-title">${s.name}</h3>
+        <div class="script-actions">
+          <button class="btn btn-primary" onclick="copy('${s.code}')">Copy</button>
+          <a href="#script=${s.id}" class="btn btn-secondary">Share</a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+  render();
+
+  function publishScript() {
+    const name = document.getElementById('scriptName').value.trim();
+    const code = document.getElementById('scriptCode').value.trim();
+    if (!name || !code) return alert('Fill name & code!');
+    scripts.unshift({ id: Date.now().toString(36), name, code });
+    localStorage.setItem(SCRIPTS_KEY, JSON.stringify(scripts));
+    render();
+    document.getElementById('scriptName').value = '';
+    document.getElementById('scriptCode').value = '';
+    alert('Published!');
+  }
+
+  function copy(txt) {
+    navigator.clipboard.writeText(txt).then(() => alert('Copied!'));
+  }
+
+  function filterScripts() {
+    const term = document.getElementById('searchInput').value.toLowerCase();
+    render(scripts.filter(s => s.name.toLowerCase().includes(term)));
+  }
+
+  function toggleMobileMenu() {
+    document.getElementById('mobileNav').classList.toggle('hidden');
+  }
+
+  updateUI();
+</script>
+</body>
+</html>
