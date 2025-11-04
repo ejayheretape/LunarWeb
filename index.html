@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LunarScr1ptz.gg - Free Roblox Scripts</title>
+  <title>Lunar Scriptz - Free Roblox Scripts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0a1a2e">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,7 +34,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* BUBBLE BACKGROUND */
     .bubbles {
       position: fixed;
       top: 0; left: 0;
@@ -65,7 +64,6 @@
       z-index: 2;
     }
 
-    /* HEADER */
     header {
       background: rgba(0, 30, 60, 0.85);
       backdrop-filter: blur(12px);
@@ -117,7 +115,6 @@
       background: rgba(255, 255, 255, 0.1);
     }
 
-    /* MOBILE NAV */
     #mobileNav {
       position: absolute;
       top: 100%;
@@ -144,7 +141,6 @@
       color: var(--primary);
     }
 
-    /* HERO */
     .hero {
       text-align: center;
       padding: 4rem 1rem;
@@ -195,7 +191,6 @@
     }
     .search-bar button:hover { background: var(--primary-dark); }
 
-    /* DISCORD */
     .discord-section {
       text-align: center;
       padding: 2rem 1rem;
@@ -225,7 +220,6 @@
       box-shadow: 0 15px 30px rgba(88, 101, 242, 0.4);
     }
 
-    /* SCRIPTS */
     .scripts-section { padding: 3rem 1rem; position: relative; z-index: 2; }
     .section-title {
       font-size: 2rem;
@@ -261,6 +255,12 @@
       color: #fff;
       word-break: break-word;
     }
+    .script-author {
+      font-size: 0.85rem;
+      color: #7fcfff;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
     .script-actions {
       display: flex;
       gap: 0.6rem;
@@ -287,7 +287,48 @@
     .btn-secondary { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
     .btn-secondary:hover { background: var(--primary); color: #fff; }
 
-    /* FOOTER */
+    .upload-section {
+      background: rgba(15, 35, 70, 0.6);
+      padding: 2rem;
+      border-radius: var(--radius);
+      margin: 2rem 0;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      display: none;
+    }
+    .upload-section.show { display: block; }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #a0e0ff;
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 8px;
+      background: rgba(10, 26, 46, 0.7);
+      color: #fff;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+    }
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
     .footer {
       background: rgba(0, 15, 40, 0.9);
       padding: 2rem 1rem;
@@ -298,7 +339,6 @@
       backdrop-filter: blur(10px);
     }
 
-    /* MOBILE OPTIMIZATIONS */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .mobile-menu { display: block; }
@@ -309,9 +349,7 @@
       .scripts-grid { grid-template-columns: 1fr; gap: 1rem; }
       .script-actions { justify-content: stretch; }
       .btn { flex: 1; font-size: 0.95rem; padding: 0.8rem; }
-      .bubble { 
-        animation-duration: calc(15s + (var(--i, 0) * 5s)) !important;
-      }
+      .upload-section { padding: 1.5rem; }
     }
 
     @media (max-width: 480px) {
@@ -324,15 +362,15 @@
 </head>
 <body>
 
-<!-- BUBBLE BACKGROUND -->
 <div class="bubbles" id="bubbles"></div>
 
 <header>
   <nav class="container">
-    <a href="#" class="logo">LunarScr1ptz.gg</a>
+    <a href="#" class="logo">Lunar Scriptz</a>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#scripts">Scripts</a></li>
+      <li><a href="#upload">Upload</a></li>
       <li><a href="#discord">Discord</a></li>
     </ul>
     <div class="mobile-menu" onclick="toggleMobileMenu()">
@@ -341,10 +379,10 @@
   </nav>
 </header>
 
-<!-- MOBILE NAV -->
 <div id="mobileNav">
   <a href="#home" onclick="toggleMobileMenu()">Home</a>
   <a href="#scripts" onclick="toggleMobileMenu()">Scripts</a>
+  <a href="#upload" onclick="toggleMobileMenu()">Upload</a>
   <a href="#discord" onclick="toggleMobileMenu()">Discord</a>
 </div>
 
@@ -367,6 +405,25 @@
   </div>
 </div>
 
+<section id="upload" class="upload-section container">
+  <h2 class="section-title">Upload Your Script</h2>
+  <div class="form-group">
+    <label>Your Name (Guest)</label>
+    <input type="text" id="guestName" placeholder="e.g. Guest123" maxlength="20">
+  </div>
+  <div class="form-group">
+    <label>Script Name</label>
+    <input type="text" id="scriptName" placeholder="e.g. Arsenal Aimbot" maxlength="50">
+  </div>
+  <div class="form-group">
+    <label>loadstring Code</label>
+    <textarea id="scriptCode" placeholder="loadstring(game:HttpGet(&quot;...&quot;))()"></textarea>
+  </div>
+  <button class="btn btn-primary" onclick="publishScript()" style="width:100%;padding:1rem;font-size:1rem;">
+    Publish Script
+  </button>
+</section>
+
 <section id="scripts" class="scripts-section">
   <div class="container">
     <h2 class="section-title">Community Scripts</h2>
@@ -376,12 +433,21 @@
 
 <footer class="footer">
   <div class="container">
-    <p>© 2025 LunarScr1ptz.gg – Made with <i class="fas fa-heart" style="color:#ff6b6b;"></i> for the community</p>
+    <p>© 2025 Lunar Scriptz – Made with <i class="fas fa-heart" style="color:#ff6b6b;"></i> for the community</p>
   </div>
 </footer>
 
 <script>
-  // BUBBLES
+  const STORAGE_KEY = 'lunar_scripts';
+  let scripts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
+    {id:'chessclub',name:'Chess Club GUI',code:'loadstring(game:HttpGet("https://pastebin.com/raw/EbUXDV3v"))()',author:'Community'},
+    {id:'arsenal',name:'Arsenal Chaos Hub',code:'task.spawn(function() pcall(function() loadstring(game:HttpGetAsync("https://codeberg.org/cypherthegreat67-blip/ChaosHub/raw/branch/main/Arsenal/Protected-Arsenal.lua"))() end) end)',author:'Community'},
+    {id:'breakin2',name:'Break In 2 (Story)',code:'task.spawn(function() pcall(function() loadstring(game:HttpGetAsync("https://codeberg.org/cypherthegreat67-blip/NOOBS/raw/branch/main/Gooners/Protected-Nerd.lua"))() end) end)',author:'Community'},
+    {id:'aimlock',name:'Universal Aimlock',code:'loadstring(game:HttpGet("https://pastebin.com/raw/q0D0C3M4"))()',author:'Community'},
+    {id:'solitary',name:'Solitary Confinement',code:'loadstring(game:HttpGet("https://pastebin.com/raw/TAEqmPEe"))()',author:'Community'},
+    {id:'entrenched',name:'Entrenched WW1',code:'loadstring(game:HttpGet("https://pastebin.com/raw/cvrDMsEx", true))()',author:'Community'}
+  ];
+
   const bubblesContainer = document.getElementById('bubbles');
   let bubbleCount = window.innerWidth < 768 ? 15 : 30;
   for (let i = 0; i < bubbleCount; i++) {
@@ -396,12 +462,10 @@
     bubble.style.left = `${Math.random() * 100}%`;
     const duration = Math.random() * 15 + 10;
     bubble.style.animationDuration = `${duration}s`;
-    bubble.style.setProperty('--i', Math.random());
     bubblesContainer.appendChild(bubble);
     setTimeout(() => bubble.remove(), duration * 1000 + 1000);
   }
 
-  // MOBILE MENU
   function toggleMobileMenu() {
     document.getElementById('mobileNav').classList.toggle('show');
   }
@@ -411,18 +475,7 @@
     }
   });
 
-  // SCRIPTS
-  const scripts = [
-    {id:'chessclub',name:'Chess Club GUI',code:'loadstring(game:HttpGet("https://pastebin.com/raw/EbUXDV3v"))()'},
-    {id:'arsenal',name:'Arsenal Chaos Hub',code:'task.spawn(function() pcall(function() loadstring(game:HttpGetAsync("https://codeberg.org/cypherthegreat67-blip/ChaosHub/raw/branch/main/Arsenal/Protected-Arsenal.lua"))() end) end)'},
-    {id:'breakin2',name:'Break In 2 (Story)',code:'task.spawn(function() pcall(function() loadstring(game:HttpGetAsync("https://codeberg.org/cypherthegreat67-blip/NOOBS/raw/branch/main/Gooners/Protected-Nerd.lua"))() end) end)'},
-    {id:'aimlock',name:'Universal Aimlock',code:'loadstring(game:HttpGet("https://pastebin.com/raw/q0D0C3M4"))()'},
-    {id:'solitary',name:'Solitary Confinement',code:'loadstring(game:HttpGet("https://pastebin.com/raw/TAEqmPEe"))()'},
-    {id:'entrenched',name:'Entrenched WW1',code:'loadstring(game:HttpGet("https://pastebin.com/raw/cvrDMsEx", true))()'}
-  ];
-
   const grid = document.getElementById('scriptsGrid');
-
   function render(list = scripts) {
     grid.innerHTML = '';
     list.forEach(s => {
@@ -431,6 +484,7 @@
       card.className = 'script-card';
       card.innerHTML = `
         <h3 class="script-title">${s.name}</h3>
+        <div class="script-author">by ${s.author}</div>
         <div class="script-actions">
           <button class="btn btn-primary" onclick="copyCode('${btoa(encodeURIComponent(s.code))}')">
             <i class="fas fa-copy"></i> <span class="btn-text">Copy</span>
@@ -455,9 +509,9 @@
 
   function shareScript(title, url, encodedCode) {
     const code = decodeURIComponent(atob(encodedCode));
-    if (navigator.share && navigator.canShare) {
+    if (navigator.share) {
       navigator.share({
-        title: `${title} - LunarScr1ptz.gg`,
+        title: `${title} - Lunar Scriptz`,
         text: 'Check out this Roblox script!',
         url: url
       }).catch(() => fallbackCopy(url));
@@ -476,17 +530,61 @@
 
   function filterScripts() {
     const term = document.getElementById('searchInput').value.toLowerCase();
-    const filtered = scripts.filter(s => s.name.toLowerCase().includes(term));
+    const filtered = scripts.filter(s => 
+      s.name.toLowerCase().includes(term) || 
+      s.author.toLowerCase().includes(term)
+    );
     render(filtered);
   }
 
-  // Auto-render on load
-  render();
+  function publishScript() {
+    const guestName = document.getElementById('guestName').value.trim();
+    const scriptName = document.getElementById('scriptName').value.trim();
+    const scriptCode = document.getElementById('scriptCode').value.trim();
 
-  // Close mobile menu on scroll
+    if (!guestName || !scriptName || !scriptCode) {
+      alert('Please fill in all fields: Your Name, Script Name, and Code.');
+      return;
+    }
+
+    if (guestName.length < 2 || scriptName.length < 3 || scriptCode.length < 20) {
+      alert('Name too short, script name too short, or code too short.');
+      return;
+    }
+
+    const newScript = {
+      id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
+      name: scriptName,
+      code: scriptCode,
+      author: guestName
+    };
+
+    scripts.unshift(newScript);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(scripts));
+    render();
+    alert('Script published successfully!');
+
+    document.getElementById('guestName').value = '';
+    document.getElementById('scriptName').value = '';
+    document.getElementById('scriptCode').value = '';
+    document.querySelector('.upload-section').classList.remove('show');
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target && target.classList.contains('upload-section')) {
+        e.preventDefault();
+        target.classList.add('show');
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  render();
   window.addEventListener('scroll', () => {
     document.getElementById('mobileNav').classList.remove('show');
   });
 </script>
 </body>
-  </html>
+        </html>
