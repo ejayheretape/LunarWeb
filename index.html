@@ -251,7 +251,7 @@
     .script-title {
       font-size: 1.2rem;
       font-weight: 600;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.4rem;
       color: #fff;
       word-break: break-word;
     }
@@ -260,6 +260,12 @@
       color: #7fcfff;
       margin-bottom: 0.5rem;
       font-style: italic;
+    }
+    .script-description {
+      font-size: 0.9rem;
+      color: #a0e0ff;
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
     }
     .script-actions {
       display: flex;
@@ -416,6 +422,10 @@
     <input type="text" id="scriptName" placeholder="e.g. Arsenal Aimbot" maxlength="50">
   </div>
   <div class="form-group">
+    <label>Description</label>
+    <textarea id="scriptDesc" placeholder="Brief description of your script..."></textarea>
+  </div>
+  <div class="form-group">
     <label>loadstring Code</label>
     <textarea id="scriptCode" placeholder="loadstring(game:HttpGet(&quot;...&quot;))()"></textarea>
   </div>
@@ -433,19 +443,19 @@
 
 <footer class="footer">
   <div class="container">
-    <p>© 2025 Lunar Scriptz – Made with <i class="fas fa-heart" style="color:#ff6b6b;"></i> for the community</p>
+    <p>© 2025 Lunar Scriptz – By Jayz And Cypher</p>
   </div>
 </footer>
 
 <script>
   const STORAGE_KEY = 'lunar_scripts';
   let scripts = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
-    {id:'chessclub',name:'Chess Club GUI',code:'loadstring(game:HttpGet("https://pastebin.com/raw/EbUXDV3v"))()',author:'Community'},
-    {id:'arsenal',name:'Arsenal Chaos Hub',code:'task.spawn(function() pcall(function() loadstring(game:HttpGetAsync("https://codeberg.org/cypherthegreat67-blip/ChaosHub/raw/branch/main/Arsenal/Protected-Arsenal.lua"))() end) end)',author:'Community'},
-    {id:'breakin2',name:'Break In 2 (Story)',code:'task.spawn(function() pcall(function() loadstring(game:HttpGetAsync("https://codeberg.org/cypherthegreat67-blip/NOOBS/raw/branch/main/Gooners/Protected-Nerd.lua"))() end) end)',author:'Community'},
-    {id:'aimlock',name:'Universal Aimlock',code:'loadstring(game:HttpGet("https://pastebin.com/raw/q0D0C3M4"))()',author:'Community'},
-    {id:'solitary',name:'Solitary Confinement',code:'loadstring(game:HttpGet("https://pastebin.com/raw/TAEqmPEe"))()',author:'Community'},
-    {id:'entrenched',name:'Entrenched WW1',code:'loadstring(game:HttpGet("https://pastebin.com/raw/cvrDMsEx", true))()',author:'Community'}
+    {id:'chessclub',name:'Chess Club GUI',desc:'By Jayz And Cypher',code:'loadstring(game:HttpGet("https://pastebin.com/raw/EbUXDV3v"))()',author:'Community'},
+    {id:'arsenal',name:'Arsenal Chaos Hub',desc:'By Jayz And Cypher',code:'task.spawn(function() pcall(function() loadstring(game:HttpGetAsync("https://codeberg.org/cypherthegreat67-blip/ChaosHub/raw/branch/main/Arsenal/Protected-Arsenal.lua"))() end) end)',author:'Community'},
+    {id:'breakin2',name:'Break In 2 (Story)',desc:'By Jayz And Cypher',code:'task.spawn(function() pcall(function() loadstring(game:HttpGetAsync("https://codeberg.org/cypherthegreat67-blip/NOOBS/raw/branch/main/Gooners/Protected-Nerd.lua"))() end) end)',author:'Community'},
+    {id:'aimlock',name:'Universal Aimlock',desc:'By Jayz And Cypher',code:'loadstring(game:HttpGet("https://pastebin.com/raw/q0D0C3M4"))()',author:'Community'},
+    {id:'solitary',name:'Solitary Confinement',desc:'By Jayz And Cypher',code:'loadstring(game:HttpGet("https://pastebin.com/raw/TAEqmPEe"))()',author:'Community'},
+    {id:'entrenched',name:'Entrenched WW1',desc:'By Jayz And Cypher',code:'loadstring(game:HttpGet("https://pastebin.com/raw/cvrDMsEx", true))()',author:'Community'}
   ];
 
   const bubblesContainer = document.getElementById('bubbles');
@@ -484,6 +494,7 @@
       card.className = 'script-card';
       card.innerHTML = `
         <h3 class="script-title">${s.name}</h3>
+        <div class="script-description">${s.desc}</div>
         <div class="script-author">by ${s.author}</div>
         <div class="script-actions">
           <button class="btn btn-primary" onclick="copyCode('${btoa(encodeURIComponent(s.code))}')">
@@ -532,7 +543,8 @@
     const term = document.getElementById('searchInput').value.toLowerCase();
     const filtered = scripts.filter(s => 
       s.name.toLowerCase().includes(term) || 
-      s.author.toLowerCase().includes(term)
+      s.author.toLowerCase().includes(term) ||
+      s.desc.toLowerCase().includes(term)
     );
     render(filtered);
   }
@@ -540,10 +552,11 @@
   function publishScript() {
     const guestName = document.getElementById('guestName').value.trim();
     const scriptName = document.getElementById('scriptName').value.trim();
+    const scriptDesc = document.getElementById('scriptDesc').value.trim() || 'By Jayz And Cypher';
     const scriptCode = document.getElementById('scriptCode').value.trim();
 
     if (!guestName || !scriptName || !scriptCode) {
-      alert('Please fill in all fields: Your Name, Script Name, and Code.');
+      alert('Please fill in all required fields: Your Name, Script Name, and Code.');
       return;
     }
 
@@ -555,6 +568,7 @@
     const newScript = {
       id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
       name: scriptName,
+      desc: scriptDesc,
       code: scriptCode,
       author: guestName
     };
@@ -566,6 +580,7 @@
 
     document.getElementById('guestName').value = '';
     document.getElementById('scriptName').value = '';
+    document.getElementById('scriptDesc').value = '';
     document.getElementById('scriptCode').value = '';
     document.querySelector('.upload-section').classList.remove('show');
   }
@@ -587,4 +602,4 @@
   });
 </script>
 </body>
-        </html>
+  </html>
